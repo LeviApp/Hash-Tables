@@ -17,6 +17,7 @@ user4 = Pair("Seke", "Hyde")
 user5 = Pair("Thumb", "Tom")
 user6 = Pair("Doff", "Valerie")
 user7 = Pair("Hope", "Karla")
+user8 = Pair("Brown", "Caleb")
 
 
 
@@ -60,7 +61,7 @@ def hash_table_insert(hash_table, entry):
         print(f'Updated dictionary with {entry.key}: {entry.value}')
     
     else:
-        replace = input(f'Spot already filled, Do you want to replace {hash_table.dict[index]}? y or n      ')
+        replace = input(f'Spot already filled, Do you want to replace {hash_table.dict[index].key}: {hash_table.dict[index].value}? y or n      ')
 
         if replace == 'y':
             hash_table.dict[index] = entry
@@ -77,6 +78,7 @@ hash_table_insert(bank, user4)
 hash_table_insert(bank, user5)
 hash_table_insert(bank, user6)
 hash_table_insert(bank, user7)
+hash_table_insert(bank, user8)
 
 # '''
 # Fill this in.
@@ -84,9 +86,31 @@ hash_table_insert(bank, user7)
 # If you try to remove a value that isn't there, print a warning.
 # '''
 def hash_table_remove(hash_table, key):
-    pass
+
+    index = hash(key, hash_table.capacity)
+
+    deleted = key
+
+    for entry in hash_table.dict:
+        try:
+            if entry.key == key:
+                confirmation = input(f'Are you sure you want to delete value at {key}? y or n      ')
+                if confirmation == 'y':
+                    print(f'Entry {entry.key}: {entry.value} was deleted')
+                    hash_table.dict[index] = None
+                    return     
+                else:
+                    print(f'Entry {entry.key}: {entry.value} was kept')
+                    return
+        except:
+            continue    
+    print(f'Key "{key}" was not found')
 
 
+
+
+
+# hash_table_remove(bank, 'Yi')
 
 # '''
 # Fill this in.
@@ -107,10 +131,10 @@ def hash_table_retrieve(hash_table, key):
     return False
 
 
-v = input("What are you looking for?    ")
+# v = input("What are you looking for?    ")
 
-while hash_table_retrieve(bank, v) == False:
-    v = input("What are you looking for?    ")
+# while hash_table_retrieve(bank, v) == False:
+#     v = input("What are you looking for?    ")
 
 
 
