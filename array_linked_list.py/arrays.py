@@ -1,3 +1,4 @@
+# test = [1,2,3,4, None, None, None]
 
 
 # Do not use any of the built in array functions for this exercise
@@ -5,28 +6,47 @@ class array:
     def __init__(self, capacity):
         # Your code here
         self.capacity = capacity
-        self.count = 0
+        self.count = 4
         self.elements = [None]*capacity
-        
 
-test = array(4)
 
-print(test.elements)
+test = array(6)
 
 
 
 # Double the size of the given array
-def resize_array():
-    # Your code here
-    pass
+def resize_array(arr):
+
+    print(arr.capacity)
+    print(arr.elements)
+    arr.capacity = arr.capacity * 2
+
+    for i in range(int(arr.capacity/2),arr.capacity):
+        print(i)
+        arr.elements[i] = None
+    print(arr.capacity)
+    print(arr.elements)
+
+
+
+# resize_array(test)
+
 
 
 # Return an element of a given array at a given index
-def array_read():
+def array_read(arr, index):
     # Throw an error if array is out of the current count
     # Your code here
-    pass
+    if index >= arr.capacity:
+        print('Index is bigger than array size! Try another index')
 
+    elif index >= arr.count:
+        print('Index slot is empty, it can be used for a value')
+
+    else:
+        print(arr.elements[index])
+
+array_read(test, 0)
 
 # Insert an element in a given array at a given index
 def array_insert():
