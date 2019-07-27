@@ -18,9 +18,21 @@ user5 = Pair("Thumb", "Tom")
 user6 = Pair("Doff", "Valerie")
 user7 = Pair("Hope", "Karla")
 user8 = Pair("Brown", "Caleb")
+user3_updated = Pair("Brown", "Kaleb")
 
 
+def equal(a, b):
+    if a.key == b.key:
+        replace = input(f'Spot already filled, Do you want to replace {a.key}: {a.value} with {b.key}: {b.value}? y or n      ')
 
+        if replace == 'y':
+            a.value = b.value
+            print(f'Updated dictionary with {a.key}: {a.value}')
+            return a
+
+        else:
+            print(f'Dictionary entry {a.key}: {a.value} was kept')
+            return a
 # '''
 # Basic hash table
 # Fill this in.  All storage values should be initialized to None
@@ -61,15 +73,23 @@ def hash_table_insert(hash_table, entry):
         print(f'Updated dictionary with {entry.key}: {entry.value}')
     
     else:
-        replace = input(f'Spot already filled, Do you want to replace {hash_table.dict[index].key}: {hash_table.dict[index].value}? y or n      ')
+        item = hash_table.dict[index]
 
-        if replace == 'y':
-            hash_table.dict[index] = entry
-            print(f'Updated dictionary with {entry.key}: {entry.value}')
+        equal(item,entry)
 
-        else:
-            print(f'Dictionary entry {hash_table.dict[index].key}: {hash_table.dict[index].value} was kept')
+        while item.next != None:
 
+            equal(item,entry)
+
+            item = item.next
+        
+        equal(item,entry)
+
+        item.next = entry
+        print(f'Updated dictionary with {entry.key}: {entry.value}')
+
+
+    
         
 hash_table_insert(bank, user1)
 hash_table_insert(bank, user2)
@@ -79,6 +99,7 @@ hash_table_insert(bank, user5)
 hash_table_insert(bank, user6)
 hash_table_insert(bank, user7)
 hash_table_insert(bank, user8)
+
 
 # '''
 # Fill this in.
